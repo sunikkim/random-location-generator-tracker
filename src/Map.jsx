@@ -21,6 +21,7 @@ class MapContainer extends React.Component {
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.saveData = this.saveData.bind(this);
     this.getSavedData = this.getSavedData.bind(this);
+    this.clearLocations = this.clearLocations.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +30,7 @@ class MapContainer extends React.Component {
   }
 
   getSavedData() {
-    axios.get('http://localhost:5000/data')
+    axios.get(`http://localhost:5000/data`)
       .then((res) => {
         this.setState({
           coordinatesList: res.data
@@ -97,10 +98,22 @@ class MapContainer extends React.Component {
             currLocation: address
           });
         } else {
-          window.alert('no results found');
+          window.alert('No results found.');
         }
       })
       .catch((err) => console.log(err));
+  }
+
+  clearLocations(e) {
+    e.preventDefault();
+
+    axios.get('http://localhost:5000/clearData')
+      .then(() => {
+        this.getSavedData();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -115,11 +128,15 @@ class MapContainer extends React.Component {
       <div>{this.state.currLocation}</div>
       <br/>
       <b>Your saved locations + coordinates:</b>
+      <br/>
+      <button onClick={this.clearLocations}>Clear saved locations</button>
+      <div id="list">
       {this.state.coordinatesList.map((loc, i) => {
         return(
           <div key={i}>{loc.location} — Latitude: {loc.lat} — Longitude: {loc.lng}</div>
         );
       })}
+      </div>
       <br/>
       <Map google={window.google} zoom={this.state.zoom} initialCenter={{lat: this.state.lat, lng: this.state.lng}} onClick={this.onMapClick} style={style}>
         <Marker onClick={this.onMarkerClick} name={'Current location'}/>

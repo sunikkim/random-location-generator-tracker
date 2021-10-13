@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const { save, get } = require('../database/index.js');
+const { save, get, clear } = require('../database/index.js');
 const mongoose = require('mongoose');
 
 const port = process.env.PORT || 5000;
@@ -13,6 +13,12 @@ app.use(express.static('public'));
 
 app.get('/data', (req, res) => {
   get((result) => {
+    res.send(result);
+  });
+});
+
+app.get('/clearData', (req, res) => {
+  clear((result) => {
     res.send(result);
   });
 });

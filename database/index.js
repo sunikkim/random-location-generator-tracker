@@ -49,7 +49,18 @@ const get = (cb) => {
   });
 }
 
+const clear = (cb) => {
+  LocationModel.deleteMany({})
+    .then((res) => {
+      cb(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 module.exports = {
   save,
-  get
+  get,
+  clear
 };
