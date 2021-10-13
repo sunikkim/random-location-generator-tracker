@@ -138,8 +138,17 @@ class MapContainer extends React.Component {
       })}
       </div>
       <br/>
-      <Map google={window.google} zoom={this.state.zoom} initialCenter={{lat: this.state.lat, lng: this.state.lng}} onClick={this.onMapClick} style={style}>
-        <Marker onClick={this.onMarkerClick} name={'Current location'}/>
+      <Map
+        google={window.google}
+        zoom={this.state.zoom}
+        initialCenter={{lat: this.state.lat, lng: this.state.lng}}
+        onClick={this.onMapClick}
+        style={style}
+      >
+        <Marker
+          onClick={this.onMarkerClick}
+          name={'Current location'}
+        />
       </Map>
     </div>
     );
