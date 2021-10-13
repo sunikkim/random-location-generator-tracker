@@ -42,7 +42,7 @@ class MapContainer extends React.Component {
   }
 
   randCoord(range) {
-    const result = Math.ceil(Math.random() * range) * (Math.round(Math.random()) ? 1 : -1);
+    const result = (Math.random() * range) * (Math.round(Math.random()) ? 1 : -1);
 
     return result;
   }
