@@ -17,7 +17,7 @@ app.get('/data', (req, res) => {
   });
 });
 
-app.post('/saveData', (req, res) => {
+app.post('/data', (req, res) => {
   const data = req.body;
 
   save(data, () => {

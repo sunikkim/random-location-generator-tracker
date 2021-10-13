@@ -47,7 +47,7 @@ class MapContainer extends React.Component {
   }
 
   saveData() {
-    axios.post('http://localhost:5000/saveData', { location: this.state.currLocation, coordinates: this.state.currCoordinates })
+    axios.post('http://localhost:5000/data', { location: this.state.currLocation, coordinates: this.state.currCoordinates })
       .then((res) => {
         this.getSavedData();
 
