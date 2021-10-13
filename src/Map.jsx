@@ -14,7 +14,7 @@ class MapContainer extends React.Component {
       zoom: 3,
       currLocation: '',
       currCoordinates: {},
-      coordinatesList: {}
+      coordinatesList: []
     };
 
     this.onMapClick = this.onMapClick.bind(this);
@@ -61,13 +61,13 @@ class MapContainer extends React.Component {
   onMarkerClick() {
     if (this.state.currLocation && !this.state.coordinatesList[this.state.currLocation]) {
       let loc = this.state.currLocation;
-      let obj = this.state.coordinatesList;
+      let output = {}
 
-      obj[loc] = {lat: this.state.lat, lng: this.state.lng};
+      output[loc] = { lat: this.state.lat, lng: this.state.lng };
 
       this.setState({
-        coordinatesList: obj,
-        currCoordinates: obj[loc]
+        // coordinatesList: obj,
+        currCoordinates: output[loc]
       });
 
       this.saveData();
@@ -111,7 +111,11 @@ class MapContainer extends React.Component {
       <div>{this.state.currLocation}</div>
       <br/>
       <b>Your saved locations + coordinates:</b>
-      <div><pre>{JSON.stringify(this.state.coordinatesList, null, 2) }</pre></div>
+      {this.state.coordinatesList.map((loc, i) => {
+        return(
+          <div key={i}>{loc.location} — Latitude: {loc.lat} — Longitude: {loc.lng}</div>
+        );
+      })}
       <Map google={window.google} zoom={this.state.zoom} initialCenter={{lat: this.state.lat, lng: this.state.lng}} onClick={this.onMapClick}>
         <Marker onClick={this.onMarkerClick} name={'Current location'}/>
       </Map>
