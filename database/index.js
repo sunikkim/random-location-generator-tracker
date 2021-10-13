@@ -10,44 +10,46 @@ db.once('open', () => {
   console.log('mongoDB successfully connected');
 });
 
-// const schema = new mongoose.Schema({
-//   imagePath: String,
-//   labels: String
-// });
+const schema = new mongoose.Schema({
+  lat: Number,
+  lng: Number,
+  location: String,
+});
 
-// const ImageModel = mongoose.model('ImageModel', schema);
+const LocationModel = mongoose.model('LocationModel', schema);
 
-// const save = (data, cb) => {
-//   const image = new ImageModel({
-//     imagePath: data[0],
-//     labels: data[1]
-//   });
+const save = (data, cb) => {
+  const location = new LocationModel({
+    lat: data.coordinates.lat,
+    lng: data.coordinates.lng,
+    location: data.location
+  });
 
-//   ImageModel.findOne({imagePath: data[0]}, (err, savedImage) => {
-//     if (err) {
-//       return console.error(err);
-//     }
-//     if (!savedImage) {
-//       image.save((err, image) => {
-//         if (err) {
-//           return console.error(err);
-//         }
-//         cb();
-//       });
-//     }
-//   });
-// };
+  LocationModel.findOne({ location: data.location }, (err, savedLocation) => {
+    if (err) {
+      return console.error(err);
+    }
+    if (!savedLocation) {
+      location.save((err, location) => {
+        if (err) {
+          return console.error(err);
+        }
+        cb('Successfully saved in DB!');
+      });
+    }
+  });
+};
 
-// const get = (cb) => {
-//   ImageModel.find({}, (err, images) => {
-//     if (err) {
-//       console.log(err);
-//     }
-//     cb(images);
-//   });
-// }
+const get = (cb) => {
+  LocationModel.find({}, (err, locations) => {
+    if (err) {
+      console.log(err);
+    }
+    cb(locations);
+  });
+}
 
-// module.exports = {
-//   save,
-//   get
-// };
+module.exports = {
+  save,
+  get
+};
