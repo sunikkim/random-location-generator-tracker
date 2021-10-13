@@ -20,7 +20,7 @@ app.get('/data', (req, res) => {
 app.post('/saveData', (req, res) => {
   const data = req.body;
 
-  save(data, (result) => {
+  save(data, () => {
     res.sendStatus(200);
   });
 });

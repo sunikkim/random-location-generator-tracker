@@ -59,14 +59,13 @@ class MapContainer extends React.Component {
   }
 
   onMarkerClick() {
-    if (this.state.currLocation && !this.state.coordinatesList[this.state.currLocation]) {
+    if (this.state.currLocation) {
       let loc = this.state.currLocation;
       let output = {}
 
       output[loc] = { lat: this.state.lat, lng: this.state.lng };
 
       this.setState({
-        // coordinatesList: obj,
         currCoordinates: output[loc]
       });
 
@@ -98,13 +97,18 @@ class MapContainer extends React.Component {
             currLocation: address
           });
         } else {
-          console.log('no results found');
+          window.alert('no results found');
         }
       })
       .catch((err) => console.log(err));
   }
 
   render() {
+    const style = {
+      width: '60%',
+      height: '60%'
+    };
+
     return(
     <div>
       <b>Your current location: </b>
@@ -116,7 +120,8 @@ class MapContainer extends React.Component {
           <div key={i}>{loc.location} — Latitude: {loc.lat} — Longitude: {loc.lng}</div>
         );
       })}
-      <Map google={window.google} zoom={this.state.zoom} initialCenter={{lat: this.state.lat, lng: this.state.lng}} onClick={this.onMapClick}>
+      <br/>
+      <Map google={window.google} zoom={this.state.zoom} initialCenter={{lat: this.state.lat, lng: this.state.lng}} onClick={this.onMapClick} style={style}>
         <Marker onClick={this.onMarkerClick} name={'Current location'}/>
       </Map>
     </div>
