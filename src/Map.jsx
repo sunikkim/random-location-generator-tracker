@@ -133,11 +133,10 @@ class MapContainer extends React.Component {
       <div id="list">
       {this.state.coordinatesList.map((loc, i) => {
         return(
-          <div key={i}>{loc.location} — Latitude: {loc.lat} — Longitude: {loc.lng}</div>
+          <div key={i}>• {loc.location} (Latitude {loc.lat}, Longitude {loc.lng})</div>
         );
       })}
       </div>
-      <br/>
       <Map
         google={window.google}
         zoom={this.state.zoom}
