@@ -11,7 +11,7 @@ class MapContainer extends React.Component {
     this.state = {
       lat: this.randCoord(90),
       lng: this.randCoord(180),
-      zoom: 3,
+      zoom: 3.5,
       currLocation: '',
       currCoordinates: {},
       coordinatesList: []
@@ -22,6 +22,7 @@ class MapContainer extends React.Component {
     this.saveData = this.saveData.bind(this);
     this.getSavedData = this.getSavedData.bind(this);
     this.clearLocations = this.clearLocations.bind(this);
+    // this.moveMarker = this.moveMarker.bind(this);
   }
 
   componentDidMount() {
@@ -77,9 +78,10 @@ class MapContainer extends React.Component {
   onMapClick() {
     this.setState({
       lat: this.randCoord(90),
-      lng: this.randCoord(180)
+      lng: this.randCoord(180),
     });
-    window.location.reload();
+
+    this.getAddress();
   }
 
   getAddress() {
@@ -116,6 +118,10 @@ class MapContainer extends React.Component {
       });
   }
 
+  // moveMarker() {
+  //   console.log('marker moved');
+  // }
+
   render() {
     const style = {
       width: '60%',
@@ -129,7 +135,7 @@ class MapContainer extends React.Component {
       <br/>
       <b>Your saved locations + coordinates:</b>
       <br/>
-      <button onClick={this.clearLocations}>Clear saved locations</button>
+      <button id="clear" onClick={this.clearLocations}>Clear saved locations</button>
       <div id="list">
       {this.state.coordinatesList.map((loc, i) => {
         return(
@@ -140,13 +146,16 @@ class MapContainer extends React.Component {
       <Map
         google={window.google}
         zoom={this.state.zoom}
-        initialCenter={{lat: this.state.lat, lng: this.state.lng}}
+        center={{lat: this.state.lat, lng: this.state.lng}}
         onClick={this.onMapClick}
         style={style}
       >
         <Marker
           onClick={this.onMarkerClick}
           name={'Current location'}
+          position={{lat: this.state.lat, lng: this.state.lng}}
+          // draggable={true}
+          // onDragend={this.moveMarker}
         />
       </Map>
     </div>

@@ -1,7 +1,6 @@
 #list {
   height: 150px;
   overflow: hidden;
-  overflow-y: scroll;
 }
 
 h1, div {
@@ -13,7 +12,7 @@ html {
   font-weight: 300;
 }
 
-button {
+#clear {
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid #FFFFFF;
@@ -28,7 +27,7 @@ button {
   transition: all 0.2s;
 }
 
-button:hover {
+#clear:hover {
   color: #000000;
   background-color: #c9c9c9;
   cursor: pointer;
