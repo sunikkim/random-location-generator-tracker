@@ -124,8 +124,8 @@ class MapContainer extends React.Component {
 
   render() {
     const style = {
-      width: '60%',
-      height: '60%'
+      width: '75%',
+      height: '75%'
     };
 
     return(
@@ -143,6 +143,7 @@ class MapContainer extends React.Component {
         );
       })}
       </div>
+      <br></br>
       <Map
         google={window.google}
         zoom={this.state.zoom}

@@ -14,7 +14,7 @@ class App extends Component {
     return(
       <div>
         <h1>Random Location Generator + Tracker</h1>
-        <div>Click anywhere on the map to jump to a new, randomly generated location in the world. If you like where you end up, click the marker pin to save the name and coordinates of that place for future reference!</div>
+        <div id="description">Click anywhere on the map to jump to a new, randomly generated location in the world. If you like where you end up, click the marker pin to save the name and coordinates of that place for future reference!</div>
         <br/>
         <MapContainer />
         <div id="map"></div>

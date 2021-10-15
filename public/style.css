@@ -1,6 +1,6 @@
 #list {
   height: 150px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 h1, div {
@@ -31,4 +31,8 @@ html {
   color: #000000;
   background-color: #c9c9c9;
   cursor: pointer;
+}
+
+#description {
+  width: 700px;
 }
