@@ -23,6 +23,7 @@ class MapContainer extends React.Component {
     this.getSavedData = this.getSavedData.bind(this);
     this.clearLocations = this.clearLocations.bind(this);
     // this.moveMarker = this.moveMarker.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   componentDidMount() {
@@ -118,6 +119,18 @@ class MapContainer extends React.Component {
       });
   }
 
+  deleteItem(e) {
+    const id = e.target.id;
+
+    axios.put('http://localhost:5000/deleteItem', { id })
+      .then(() => {
+        this.getSavedData();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   // moveMarker() {
   //   console.log('marker moved');
   // }
@@ -139,7 +152,7 @@ class MapContainer extends React.Component {
       <div id="list">
       {this.state.coordinatesList.map((loc, i) => {
         return(
-          <div key={i}>• {loc.location} (Latitude {loc.lat}, Longitude {loc.lng})</div>
+          <div key={i}><span id={loc._id} className="delete" onClick={this.deleteItem}>X</span> {loc.location} (Latitude {loc.lat}, Longitude {loc.lng})</div>
         );
       })}
       </div>

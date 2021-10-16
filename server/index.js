@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const { save, get, clear } = require('../database/index.js');
+const { save, get, clear, remove } = require('../database/index.js');
 const mongoose = require('mongoose');
 
 const port = process.env.PORT || 5000;
@@ -28,6 +28,14 @@ app.post('/data', (req, res) => {
 
   save(data, () => {
     res.sendStatus(200);
+  });
+});
+
+app.put('/deleteItem', (req, res) => {
+  const id = req.body.id;
+
+  remove(id, () => {
+    res.sendStatus(204);
   });
 });
 

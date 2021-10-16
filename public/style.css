@@ -1,6 +1,7 @@
 #list {
   height: 150px;
   overflow: auto;
+  width: 580px;
 }
 
 h1, div {
@@ -28,6 +29,16 @@ html {
 }
 
 #clear:hover {
+  color: #000000;
+  background-color: #c9c9c9;
+  cursor: pointer;
+}
+
+.delete {
+  font-weight: bold;
+}
+
+.delete:hover {
   color: #000000;
   background-color: #c9c9c9;
   cursor: pointer;

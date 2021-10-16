@@ -59,8 +59,19 @@ const clear = (cb) => {
     });
 };
 
+const remove = (id, cb) => {
+  LocationModel.findByIdAndDelete(id)
+    .then((res) => {
+      cb(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 module.exports = {
   save,
   get,
-  clear
+  clear,
+  remove
 };
