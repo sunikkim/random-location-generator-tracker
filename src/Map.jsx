@@ -9,9 +9,11 @@ class MapContainer extends React.Component {
     super(props);
 
     this.state = {
-      lat: this.randCoord(90),
-      lng: this.randCoord(180),
-      zoom: 3.5,
+      lat: 5,
+      lng: 5,
+      defaultZoom: 3,
+      latRange: 90,
+      lngRange: 180,
       currLocation: '',
       currCoordinates: {},
       coordinatesList: []
@@ -22,13 +24,15 @@ class MapContainer extends React.Component {
     this.saveData = this.saveData.bind(this);
     this.getSavedData = this.getSavedData.bind(this);
     this.clearLocations = this.clearLocations.bind(this);
-    // this.moveMarker = this.moveMarker.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.randCoord = this.randCoord.bind(this);
+    this.onTextChange = this.onTextChange.bind(this);
   }
 
   componentDidMount() {
     this.getAddress();
     this.getSavedData();
+    this.setRandCoords();
   }
 
   getSavedData() {
@@ -43,10 +47,26 @@ class MapContainer extends React.Component {
       })
   }
 
-  randCoord(range) {
-    const result = (Math.random() * range) * (Math.round(Math.random()) ? 1 : -1);
+  randCoord(input) {
+    let result;
+
+    if (input === 'lat') {
+      result = (Math.random() * this.state.latRange) * (Math.round(Math.random()) ? 1 : -1);
+    } else if (input === 'lng') {
+      result = (Math.random() * this.state.lngRange) * (Math.round(Math.random()) ? 1 : -1);
+    }
 
     return result;
+  }
+
+  setRandCoords() {
+    const lat = this.randCoord('lat');
+    const lng = this.randCoord('lng');
+
+    this.setState({
+      lat,
+      lng
+    });
   }
 
   saveData() {
@@ -77,11 +97,7 @@ class MapContainer extends React.Component {
   }
 
   onMapClick() {
-    this.setState({
-      lat: this.randCoord(90),
-      lng: this.randCoord(180),
-    });
-
+    this.setRandCoords();
     this.getAddress();
   }
 
@@ -131,9 +147,23 @@ class MapContainer extends React.Component {
       });
   }
 
-  // moveMarker() {
-  //   console.log('marker moved');
-  // }
+  onTextChange(e) {
+    const input = e.target.id;
+
+    if (input === 'zoom') {
+      this.setState({
+        defaultZoom: Number(e.target.value)
+      });
+    } else if (input === 'lat-range') {
+      this.setState({
+        latRange: Number(e.target.value)
+      });
+    } else if (input === 'lng-range') {
+      this.setState({
+        lngRange: Number(e.target.value)
+      });
+    }
+  }
 
   render() {
     const style = {
@@ -157,9 +187,18 @@ class MapContainer extends React.Component {
       })}
       </div>
       <br></br>
+      <div id="input">
+        <label htmlFor="zoom">Default Zoom:</label>
+        <input type="text" id="zoom" name="zoom" onChange={this.onTextChange} value={this.state.defaultZoom}/>
+        <label htmlFor="lat-range">Latitude Range (0-90):</label>
+        <input type="text" id="lat-range" name="lat-range" onChange={this.onTextChange} value={this.state.latRange}/>
+        <label htmlFor="lng-range">Longitude Range (0-180):</label>
+        <input type="text" id="lng-range" name="lng-range" onChange={this.onTextChange} value={this.state.lngRange}/>
+      </div>
+      <br></br>
       <Map
         google={window.google}
-        zoom={this.state.zoom}
+        zoom={this.state.defaultZoom}
         center={{lat: this.state.lat, lng: this.state.lng}}
         onClick={this.onMapClick}
         style={style}
@@ -168,8 +207,6 @@ class MapContainer extends React.Component {
           onClick={this.onMarkerClick}
           name={'Current location'}
           position={{lat: this.state.lat, lng: this.state.lng}}
-          // draggable={true}
-          // onDragend={this.moveMarker}
         />
       </Map>
     </div>
