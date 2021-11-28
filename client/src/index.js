@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Loader } from '@googlemaps/js-api-loader';
-import MAPS_KEY from '../API_KEY.js';
 import MapContainer from './Map.jsx';
+import './style.css';
 
 class App extends Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import { Map, InfoWindow, Marker, GoogleApiWrapper, Circle, Geocoder } from 'google-maps-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MAPS_KEY from '../API_KEY.js';
+import MAPS_KEY from './API_KEY.js';
 import axios from 'axios';
 
 class MapContainer extends React.Component {
@@ -36,7 +36,7 @@ class MapContainer extends React.Component {
   }
 
   getSavedData() {
-    axios.get(`http://localhost:5000/data`)
+    axios.get('/data')
       .then((res) => {
         this.setState({
           coordinatesList: res.data
@@ -70,7 +70,7 @@ class MapContainer extends React.Component {
   }
 
   saveData() {
-    axios.post('http://localhost:5000/data', { location: this.state.currLocation, coordinates: this.state.currCoordinates })
+    axios.post('/data', { location: this.state.currLocation, coordinates: this.state.currCoordinates })
       .then((res) => {
         this.getSavedData();
 
@@ -126,7 +126,7 @@ class MapContainer extends React.Component {
   clearLocations(e) {
     e.preventDefault();
 
-    axios.get('http://localhost:5000/clearData')
+    axios.get('/clearData')
       .then(() => {
         this.getSavedData();
       })
@@ -138,7 +138,7 @@ class MapContainer extends React.Component {
   deleteItem(e) {
     const id = e.target.id;
 
-    axios.put('http://localhost:5000/deleteItem', { id })
+    axios.put('/deleteItem', { id })
       .then(() => {
         this.getSavedData();
       })
