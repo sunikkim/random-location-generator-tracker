@@ -1,21 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import './style.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+import Login from './components/Login.jsx';
 
-  render() {
-    return(
-      <div>
-        <h1>RPG</h1>
-        <div id="description">Description here</div>
-      </div>
-    );
-  }
-}
+const App = () => {
+  return(
+    <div>
+      <h1>RPG</h1>
+      <Login />
+    </div>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));
