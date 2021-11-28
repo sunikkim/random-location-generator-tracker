@@ -1,7 +1,6 @@
 import { Map, InfoWindow, Marker, GoogleApiWrapper, Circle, Geocoder } from 'google-maps-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MAPS_KEY from './API_KEY.js';
 import axios from 'axios';
 
 class MapContainer extends React.Component {
@@ -16,154 +15,155 @@ class MapContainer extends React.Component {
       lngRange: 180,
       currLocation: '',
       currCoordinates: {},
-      coordinatesList: []
+      coordinatesList: [],
+      loaded: false,
     };
 
-    this.onMapClick = this.onMapClick.bind(this);
-    this.onMarkerClick = this.onMarkerClick.bind(this);
-    this.saveData = this.saveData.bind(this);
-    this.getSavedData = this.getSavedData.bind(this);
-    this.clearLocations = this.clearLocations.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.randCoord = this.randCoord.bind(this);
-    this.onTextChange = this.onTextChange.bind(this);
+    // this.onMapClick = this.onMapClick.bind(this);
+    // this.onMarkerClick = this.onMarkerClick.bind(this);
+    // this.saveData = this.saveData.bind(this);
+    // this.getSavedData = this.getSavedData.bind(this);
+    // this.clearLocations = this.clearLocations.bind(this);
+    // this.deleteItem = this.deleteItem.bind(this);
+    // this.randCoord = this.randCoord.bind(this);
+    // this.onTextChange = this.onTextChange.bind(this);
   }
 
   componentDidMount() {
-    this.getAddress();
-    this.getSavedData();
-    this.setRandCoords();
+    // this.getAddress();
+    // this.getSavedData();
+    // this.setRandCoords();
   }
 
-  getSavedData() {
-    axios.get('/data')
-      .then((res) => {
-        this.setState({
-          coordinatesList: res.data
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
+  // getSavedData() {
+  //   axios.get('/data')
+  //     .then((res) => {
+  //       this.setState({
+  //         coordinatesList: res.data
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  // }
 
-  randCoord(input) {
-    let result;
+  // randCoord(input) {
+  //   let result;
 
-    if (input === 'lat') {
-      result = (Math.random() * this.state.latRange) * (Math.round(Math.random()) ? 1 : -1);
-    } else if (input === 'lng') {
-      result = (Math.random() * this.state.lngRange) * (Math.round(Math.random()) ? 1 : -1);
-    }
+  //   if (input === 'lat') {
+  //     result = (Math.random() * this.state.latRange) * (Math.round(Math.random()) ? 1 : -1);
+  //   } else if (input === 'lng') {
+  //     result = (Math.random() * this.state.lngRange) * (Math.round(Math.random()) ? 1 : -1);
+  //   }
 
-    return result;
-  }
+  //   return result;
+  // }
 
-  setRandCoords() {
-    const lat = this.randCoord('lat');
-    const lng = this.randCoord('lng');
+  // setRandCoords() {
+  //   const lat = this.randCoord('lat');
+  //   const lng = this.randCoord('lng');
 
-    this.setState({
-      lat,
-      lng
-    });
-  }
+  //   this.setState({
+  //     lat,
+  //     lng
+  //   });
+  // }
 
-  saveData() {
-    axios.post('/data', { location: this.state.currLocation, coordinates: this.state.currCoordinates })
-      .then((res) => {
-        this.getSavedData();
+  // saveData() {
+  //   axios.post('/data', { location: this.state.currLocation, coordinates: this.state.currCoordinates })
+  //     .then((res) => {
+  //       this.getSavedData();
 
-        window.alert('Successfully saved this location!');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  //       window.alert('Successfully saved this location!');
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
-  onMarkerClick() {
-    if (this.state.currLocation) {
-      let loc = this.state.currLocation;
-      let output = {}
+  // onMarkerClick() {
+  //   if (this.state.currLocation) {
+  //     let loc = this.state.currLocation;
+  //     let output = {}
 
-      output[loc] = { lat: this.state.lat, lng: this.state.lng };
+  //     output[loc] = { lat: this.state.lat, lng: this.state.lng };
 
-      this.setState({
-        currCoordinates: output[loc]
-      });
+  //     this.setState({
+  //       currCoordinates: output[loc]
+  //     });
 
-      this.saveData();
-    }
-  }
+  //     this.saveData();
+  //   }
+  // }
 
-  onMapClick() {
-    this.setRandCoords();
-    this.getAddress();
-  }
+  // onMapClick() {
+  //   this.setRandCoords();
+  //   this.getAddress();
+  // }
 
-  getAddress() {
-    const geocoder = new google.maps.Geocoder();
+  // getAddress() {
+  //   const geocoder = new google.maps.Geocoder();
 
-    geocoder
-      .geocode({ location: {
-        lat: this.state.lat,
-        lng: this.state.lng
-      } })
-      .then((response) => {
-        if (response.results[0]) {
-          const address = response.results[0].formatted_address;
+  //   geocoder
+  //     .geocode({ location: {
+  //       lat: this.state.lat,
+  //       lng: this.state.lng
+  //     } })
+  //     .then((response) => {
+  //       if (response.results[0]) {
+  //         const address = response.results[0].formatted_address;
 
-          this.setState({
-            currLocation: address
-          });
-        } else {
-          window.alert('No results found.');
-        }
-      })
-      .catch((err) => console.log(err));
-  }
+  //         this.setState({
+  //           currLocation: address
+  //         });
+  //       } else {
+  //         window.alert('No results found.');
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
 
-  clearLocations(e) {
-    e.preventDefault();
+  // clearLocations(e) {
+  //   e.preventDefault();
 
-    axios.get('/clearData')
-      .then(() => {
-        this.getSavedData();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  //   axios.get('/clearData')
+  //     .then(() => {
+  //       this.getSavedData();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
-  deleteItem(e) {
-    const id = e.target.id;
+  // deleteItem(e) {
+  //   const id = e.target.id;
 
-    axios.put('/deleteItem', { id })
-      .then(() => {
-        this.getSavedData();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  //   axios.put('/deleteItem', { id })
+  //     .then(() => {
+  //       this.getSavedData();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
-  onTextChange(e) {
-    const input = e.target.id;
+  // onTextChange(e) {
+  //   const input = e.target.id;
 
-    if (input === 'zoom') {
-      this.setState({
-        defaultZoom: Number(e.target.value)
-      });
-    } else if (input === 'lat-range') {
-      this.setState({
-        latRange: Number(e.target.value)
-      });
-    } else if (input === 'lng-range') {
-      this.setState({
-        lngRange: Number(e.target.value)
-      });
-    }
-  }
+  //   if (input === 'zoom') {
+  //     this.setState({
+  //       defaultZoom: Number(e.target.value)
+  //     });
+  //   } else if (input === 'lat-range') {
+  //     this.setState({
+  //       latRange: Number(e.target.value)
+  //     });
+  //   } else if (input === 'lng-range') {
+  //     this.setState({
+  //       lngRange: Number(e.target.value)
+  //     });
+  //   }
+  // }
 
   render() {
     const style = {
@@ -173,7 +173,8 @@ class MapContainer extends React.Component {
 
     return(
     <div>
-      <b>Your current location: </b>
+      Hello World
+      {/* <b>Your current location: </b>
       <div>{this.state.currLocation}</div>
       <br/>
       <b>Your saved locations + coordinates:</b>
@@ -195,8 +196,8 @@ class MapContainer extends React.Component {
         <label htmlFor="lng-range">Longitude Range (0-180):</label>
         <input type="text" id="lng-range" name="lng-range" onChange={this.onTextChange} value={this.state.lngRange}/>
       </div>
-      <br></br>
-      <Map
+      <br></br> */}
+      {/* <Map
         google={window.google}
         zoom={this.state.defaultZoom}
         center={{lat: this.state.lat, lng: this.state.lng}}
@@ -208,12 +209,10 @@ class MapContainer extends React.Component {
           name={'Current location'}
           position={{lat: this.state.lat, lng: this.state.lng}}
         />
-      </Map>
+      </Map> */}
     </div>
-    );
+    )
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: MAPS_KEY
-})(MapContainer)
+export default MapContainer;
