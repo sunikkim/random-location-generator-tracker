@@ -26,4 +26,10 @@ html {
   bottom: 0;
   width: 100%;
   height: 15vh;
+  display: grid;
+}
+
+#inventory {
+  display: flex;
+  flex-direction: row;
 }

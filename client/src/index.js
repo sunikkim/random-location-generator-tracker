@@ -69,7 +69,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <div>***strobe warning***</div>
+      <div>***WIP, strobe warning***</div>
         <Routes>
           <Route
             path="/login"

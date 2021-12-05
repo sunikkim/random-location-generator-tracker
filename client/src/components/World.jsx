@@ -6,7 +6,7 @@ import HUD from './HUD';
 const World = () => {
   const [timer, setTimer] = useState('');
   const [style, setStyle] = useState({});
-
+  const [inventory, setInventory] = useState([]);
 
   const navigate = useNavigate();
 
@@ -78,13 +78,14 @@ const World = () => {
   };
 
   const handlePortalClick = (e) => {
+    setInventory([...inventory, 1]);
     setPortalPosition();
   };
 
   return (
     <div className="world-wrapper" onClick={handleClick}>
       <div className="portal" onClick={handlePortalClick} style={style}></div>
-      <HUD setPortalPosition={setPortalPosition}/>
+      <HUD setPortalPosition={setPortalPosition} inventory={inventory}/>
     </div>
   );
 };
