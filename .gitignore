@@ -37,5 +37,3 @@ bower_components/
 *.jpg
 
 .env
-API_KEY.js
-firebase-config.js
