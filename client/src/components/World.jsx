@@ -51,11 +51,11 @@ const World = () => {
 
     if (probability % 3 === 0 || probability % 4 === 0) {
       screen = document.getElementsByClassName('portal')[0];
-      screen.style['background-color'] = generateRandomHexCode();
     } else {
       screen = document.getElementsByClassName('world-wrapper')[0];
-      screen.style['background-color'] = generateRandomHexCode();
     }
+
+    screen.style['background-color'] = generateRandomHexCode();
   };
 
   const handleClick = (e) => {
@@ -72,23 +72,22 @@ const World = () => {
   };
 
   const setPortalPosition = () => {
-    const rand1 = Math.floor(Math.random() * 100);
-    const rand2 = Math.floor(Math.random() * 100);
+    const rand1 = Math.floor(Math.random() * 80);
+    const rand2 = Math.floor(Math.random() * 80);
     const rand3 = Math.floor(Math.random() * 20) + 5;
     const rand4 = Math.floor(Math.random() * 20) + 5;
 
     setStyle({
-      ['position']: 'absolute',
-      ['top']: `${rand1}vw`,
-      ['left']: `${rand2}vw`,
-      ['height']: `${rand3}vh`,
-      ['width']: `${rand4}vw`,
+      position: 'absolute',
+      top: `${rand1}vw`,
+      left: `${rand2}vw`,
+      height: `${rand3}vh`,
+      width: `${rand4}vw`,
     });
   };
 
   const handlePortalClick = (e) => {
     setInventory([...inventory, e.target.className]);
-    console.log(inventory);
     setPortalPosition();
   };
 
