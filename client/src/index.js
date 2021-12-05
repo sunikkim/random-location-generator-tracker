@@ -28,10 +28,13 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem('Auth Token');
+    const authToken = sessionStorage.getItem('Auth Token');
+    const startedGame = sessionStorage.getItem('Started Game');
 
-    if (authToken) {
+    if (authToken && !startedGame) {
       navigate('/home');
+    } else if (authToken && startedGame) {
+      navigate('/world');
     } else {
       navigate('/login');
     }
@@ -94,7 +97,7 @@ const App = () => {
             }
           />
           <Route
-            path="/newGame"
+            path="/world"
             element={
               <World />
             }
