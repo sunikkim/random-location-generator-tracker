@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const World = () => {
@@ -9,6 +9,7 @@ const World = () => {
 
     if (authToken) {
       navigate('/world');
+      setColor();
     }
 
     if (!authToken) {
@@ -16,8 +17,22 @@ const World = () => {
     }
   }, []);
 
+  const setColor = () => {
+    const generateRandomHexCode = () => {
+      const n = (Math.random() * 0xfffff * 1000000).toString(16);
+      return '#' + n.slice(0, 6);
+    };
+
+    let screen = document.getElementsByClassName('world-wrapper')[0];
+    screen.style['background-color'] = generateRandomHexCode();
+  };
+
+  const handleClick = (e) => {
+    setColor();
+  };
+
   return (
-    <div className="world-wrapper"></div>
+    <div className="world-wrapper" onClick={handleClick}></div>
   );
 };
 
