@@ -5,14 +5,25 @@ import './style.css';
 
 import Form from './components/Form.jsx';
 import Button from './components/Button.jsx';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
 
 const App = () => {
   return(
-    <div>
-      <h1>RPG</h1>
-      <Form />
-      <Button />
-    </div>
+    <Router>
+      <div className="app">
+        <>
+        <h1>RPG</h1>
+        <Routes>
+          <Route path="/login" element={<Form />}/>
+          <Route path="/register" element={<Form />}/>
+        </Routes>
+        </>
+      </div>
+    </Router>
   );
 };
 

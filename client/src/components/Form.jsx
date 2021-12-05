@@ -10,11 +10,11 @@ const Form = () => {
       </div>
       <form>
         <div>
-          <label for="email">Email: </label>
+          <label>Email: </label>
           <input name="email"></input>
         </div>
         <div>
-          <label for="password">Password: </label>
+          <label>Password: </label>
           <input name="password"></input>
         </div>
       </form>
