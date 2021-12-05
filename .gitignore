@@ -38,3 +38,4 @@ bower_components/
 
 .env
 API_KEY.js
+firebase-config.js

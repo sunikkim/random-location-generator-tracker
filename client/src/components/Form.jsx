@@ -1,23 +1,32 @@
 import React from 'react';
 
-const Form = () => {
+import Button from './Button.jsx';
+
+const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
   return (
     <div>
       <div className="heading-container">
         <h3>
-          Please Log In
+          {title}
         </h3>
       </div>
       <form>
         <div>
           <label>Email: </label>
-          <input name="email"></input>
+          <input
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
+          ></input>
         </div>
         <div>
           <label>Password: </label>
-          <input name="password"></input>
+          <input
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+          ></input>
         </div>
       </form>
+      <Button title={title} handleSubmit={handleSubmit} />
     </div>
   );
 };
