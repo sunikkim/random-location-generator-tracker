@@ -31,6 +31,8 @@ const App = () => {
 
     if (authToken) {
       navigate('/home');
+    } else {
+      navigate('/login');
     }
   }, []);
 

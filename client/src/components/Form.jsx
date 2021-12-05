@@ -15,6 +15,7 @@ const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
           <label>Email: </label>
           <input
             name="email"
+            type="email"
             onChange={(e) => setEmail(e.target.value)}
           ></input>
         </div>
@@ -22,6 +23,7 @@ const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
           <label>Password: </label>
           <input
             name="password"
+            type="password"
             onChange={(e) => setPassword(e.target.value)}
           ></input>
         </div>
