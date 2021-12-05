@@ -8,6 +8,7 @@ const World = () => {
   const [style, setStyle] = useState({});
   const [inventory, setInventory] = useState([]);
   const [isHovering, setIsHovering] = useState(false);
+  const [level, setLevel] = useState(1);
 
   const navigate = useNavigate();
 
