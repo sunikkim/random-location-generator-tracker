@@ -41,10 +41,10 @@ const App = () => {
   }, []);
 
   const handleSubmit = (id) => {
-    const authentication = getAuth();
+    const auth = getAuth();
 
     if (id === 1) {
-      signInWithEmailAndPassword(authentication, email, password)
+      signInWithEmailAndPassword(auth, email, password)
         .then((response) => {
           navigate('/home');
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
@@ -57,7 +57,7 @@ const App = () => {
     }
 
     if (id === 2) {
-      createUserWithEmailAndPassword(authentication, email, password)
+      createUserWithEmailAndPassword(auth, email, password)
         .then((response) => {
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
         })
