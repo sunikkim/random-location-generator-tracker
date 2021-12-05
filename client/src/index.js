@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import './style.css';
+import './style.scss';
 
 import Form from './components/Form.jsx';
 import Button from './components/Button.jsx';

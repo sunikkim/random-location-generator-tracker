@@ -17,7 +17,7 @@ const World = () => {
   }, []);
 
   return (
-    <div className="world-wrapper">world</div>
+    <div className="world-wrapper"></div>
   );
 };
 
