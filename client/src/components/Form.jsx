@@ -1,13 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from './Button.jsx';
 
 const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
-  const onKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleSubmit();
-    }
-  };
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -31,11 +28,12 @@ const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
             name="password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
-            // onKeyDown={onKeyDown}
           ></input>
         </div>
       </form>
       <Button title={title} handleSubmit={handleSubmit} />
+      {title === 'Login' && <button onClick={() => navigate('/register')}>New User?</button>}
+      {title === 'Register' && <button onClick={() => navigate('/login')}>Already have an account?</button>}
     </div>
   );
 };

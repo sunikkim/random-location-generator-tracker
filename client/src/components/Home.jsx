@@ -11,7 +11,7 @@ const Home = () => {
 
   const handleNewGame = () => {
     sessionStorage.setItem('Started Game', true);
-    navigate('/newGame');
+    navigate('/world');
   };
 
   const handleContinue = () => {

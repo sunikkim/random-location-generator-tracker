@@ -35,7 +35,7 @@ const App = () => {
       navigate('/home');
     } else if (authToken && startedGame) {
       navigate('/world');
-    } else {
+    } else if (!authToken) {
       navigate('/login');
     }
   }, []);
@@ -69,6 +69,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <div>***strobe warning***</div>
         <Routes>
           <Route
             path="/login"
