@@ -3,6 +3,12 @@ import React from 'react';
 import Button from './Button.jsx';
 
 const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
+  const onKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  };
+
   return (
     <div>
       <div className="heading-container">
@@ -25,6 +31,7 @@ const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
             name="password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
+            // onKeyDown={onKeyDown}
           ></input>
         </div>
       </form>

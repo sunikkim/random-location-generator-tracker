@@ -6,6 +6,7 @@ import './style.css';
 import Form from './components/Form.jsx';
 import Button from './components/Button.jsx';
 import Home from './components/Home';
+import World from './components/World';
 
 import {
   BrowserRouter as Router,
@@ -65,8 +66,6 @@ const App = () => {
 
   return (
     <div className="app">
-      <>
-        <h1>RPG</h1>
         <Routes>
           <Route
             path="/login"
@@ -94,8 +93,13 @@ const App = () => {
               <Home />
             }
           />
+          <Route
+            path="/newGame"
+            element={
+              <World />
+            }
+          />
         </Routes>
-      </>
       <ToastContainer />
     </div>
   );

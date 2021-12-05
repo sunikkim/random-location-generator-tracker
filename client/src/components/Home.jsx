@@ -9,6 +9,14 @@ const Home = () => {
     navigate('/login');
   };
 
+  const handleNewGame = () => {
+    navigate('/newGame');
+  };
+
+  const handleContinue = () => {
+    navigate('/continue');
+  };
+
   useEffect(() => {
     let authToken = sessionStorage.getItem('Auth Token');
 
@@ -23,7 +31,9 @@ const Home = () => {
 
   return (
     <div>
-      <h2>Home</h2>
+      <h2>Welcome Back!</h2>
+      <button onClick={handleNewGame}>New Game</button>
+      <button onClick={handleContinue}>Continue</button>
       <button onClick={handleLogout}>Log out</button>
     </div>
   );
