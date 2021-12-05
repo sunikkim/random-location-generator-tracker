@@ -82,12 +82,13 @@ const World = () => {
       ['top']: `${rand1}vw`,
       ['left']: `${rand2}vw`,
       ['height']: `${rand3}vh`,
-      ['width']: `${rand4}vw`
+      ['width']: `${rand4}vw`,
     });
   };
 
   const handlePortalClick = (e) => {
-    setInventory([...inventory, 1]);
+    setInventory([...inventory, e.target.className]);
+    console.log(inventory);
     setPortalPosition();
   };
 
