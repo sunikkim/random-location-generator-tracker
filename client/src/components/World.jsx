@@ -32,12 +32,21 @@ const World = () => {
 
     if (target === 'world-wrapper') {
       let screen = document.getElementsByClassName('world-wrapper')[0];
+
+      if (!screen) {
+        return;
+      }
+
       screen.style['background-color'] = generateRandomHexCode();
     } else if (target === 'portal') {
       let screen = document.getElementsByClassName('portal')[0];
+
+      if (!screen) {
+        return;
+      }
+
       screen.style['background-color'] = generateRandomHexCode();
     }
-
     const probability = Math.floor(Math.random() * 100);
 
     if (probability % 3 === 0 || probability % 4 === 0) {
