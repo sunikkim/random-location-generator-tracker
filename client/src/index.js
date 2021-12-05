@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import './style.css';
@@ -17,23 +17,46 @@ import {
 import { app } from './firebase-config.js';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    let authToken = sessionStorage.getItem('Auth Token');
+
+    if (authToken) {
+      navigate('/home');
+    }
+  }, []);
+
   const handleSubmit = (id) => {
     const authentication = getAuth();
+
+    if (id === 1) {
+      signInWithEmailAndPassword(authentication, email, password)
+        .then((response) => {
+          navigate('/home');
+          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
+        })
+        .catch((err) => {
+          if (err.code === 'auth/wrong-password' || 'auth/invalid-email'){
+            toast.error('Invalid login info');
+          }
+        });
+    }
 
     if (id === 2) {
       createUserWithEmailAndPassword(authentication, email, password)
         .then((response) => {
-          console.log(response);
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
         })
         .catch((err) => {
-          console.log('err: ', err);
+          console.log(err);
         });
     }
   };
@@ -71,6 +94,7 @@ const App = () => {
           />
         </Routes>
       </>
+      <ToastContainer />
     </div>
   );
 };
