@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import HUD from './HUD';
+
 const World = () => {
   const [timer, setTimer] = useState('');
   const [style, setStyle] = useState({});
@@ -82,6 +84,7 @@ const World = () => {
   return (
     <div className="world-wrapper" onClick={handleClick}>
       <div className="portal" onClick={handlePortalClick} style={style}></div>
+      <HUD setPortalPosition={setPortalPosition}/>
     </div>
   );
 };
