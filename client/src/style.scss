@@ -1,5 +1,5 @@
 html {
-  font-family: 'Roboto', sans-serif;
+  font-family: Garamond;
   font-weight: 300;
 }
 
@@ -65,29 +65,48 @@ button {
   align-items: center;
   justify-content: center;
 }
+
 .form-container {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #dcdcdc;
+  background-color: white;
   padding: 30px;
 }
+
 .form-text-box {
-  padding: 10px;
-  font-size: 18px;
+  padding: 8px;
+  font-size: 14px;
   margin-bottom: 10px;
+  &::placeholder {
+    font-family: Garamond;
+    font-size: 15px;
+  }
 }
+
 .form-btn {
-  padding: 10px;
-  font-size: 18px;
+  padding: 8px;
+  font-size: 16px;
   margin-bottom: 10px;
   border: none;
   color: white;
   background-color: black;
+  font-family: 'Garamond';
 }
+
 .form-google {
   background-color: #4285f4;
 }
+
 .form div {
   margin-top: 7px;
+}
+
+.text-below-form {
+  font-size: 15px;
+}
+
+#no-account {
+  margin-bottom: 10px;
+  margin-top: -5px;
 }

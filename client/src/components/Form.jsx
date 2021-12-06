@@ -34,7 +34,7 @@ const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
 
   const GoogleLogin = () => {
     return(
-      <button className="form-btn form-google">Continue with Google</button>
+      <button className="form-btn form-google" onClick={signInWithGoogle}>Continue with Google</button>
     );
   };
 
@@ -58,15 +58,15 @@ const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
         <Button title={title} handleSubmit={handleSubmit} />
         {title === 'Login' && <GoogleLogin />}
         {title === 'Login' &&
-          <div>
-            <div>Don't have an account? <Link to="/register">Register</Link></div>
+          <div className="text-below-form">
+            <div id="no-account">Don't have an account? <Link to="/register">Register</Link></div>
             <div>
               <Link to="/reset">Forgot Password</Link>
             </div>
           </div>
         }
         {title === 'Register' &&
-          <div>
+          <div className="text-below-form">
             Already have an account? <Link to="/login">Login</Link>
           </div>
         }

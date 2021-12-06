@@ -69,41 +69,40 @@ const App = () => {
 
   return (
     <div className="app">
-      <div>***WIP, strobe warning***</div>
-        <Routes>
-          <Route
-            path="/login"
-            element={
-              <Form
-                title="Login"
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            <Form
+              title="Login"
+              setEmail={setEmail}
+              setPassword={setPassword}
+              handleSubmit={() => handleSubmit(1)}
+            />}
+        />
+        <Route
+          path="/register"
+          element={
+            <Form
+                title="Register"
                 setEmail={setEmail}
                 setPassword={setPassword}
-                handleSubmit={() => handleSubmit(1)}
-              />}
-          />
-          <Route
-            path="/register"
-            element={
-              <Form
-                  title="Register"
-                  setEmail={setEmail}
-                  setPassword={setPassword}
-                  handleSubmit={() => handleSubmit(2)}
-              />}
-          />
-          <Route
-            path="/home"
-            element={
-              <Home />
-            }
-          />
-          <Route
-            path="/world"
-            element={
-              <World />
-            }
-          />
-        </Routes>
+                handleSubmit={() => handleSubmit(2)}
+            />}
+        />
+        <Route
+          path="/home"
+          element={
+            <Home />
+          }
+        />
+        <Route
+          path="/world"
+          element={
+            <World />
+          }
+        />
+      </Routes>
       <ToastContainer />
     </div>
   );
