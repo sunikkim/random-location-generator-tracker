@@ -35,6 +35,7 @@ const App = () => {
       navigate('/home');
     } else if (authToken && startedGame) {
       navigate('/world');
+      // navigate('/home');
     } else if (!authToken) {
       navigate('/login');
     }

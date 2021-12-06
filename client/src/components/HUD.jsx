@@ -12,8 +12,8 @@ const HUD = ({ setPortalPosition, inventory }) => {
 
   return (
     <div id="hud-wrapper">
-      <button onClick={handleLogout}>Log out</button>
-      <button onClick={setPortalPosition}>Regenerate</button>
+      <button onClick={handleLogout} className="hud-btn">Log out</button>
+      <button onClick={setPortalPosition} className="hud-btn">Regenerate</button>
       <div id="inventory">
         {inventory.map((item, i) => {
           return(

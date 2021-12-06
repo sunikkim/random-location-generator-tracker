@@ -32,10 +32,12 @@ const Home = () => {
 
   return (
     <div>
-      <h2>Welcome Back!</h2>
-      <button onClick={handleNewGame}>New Game</button>
-      <button onClick={handleContinue}>Continue</button>
-      <button onClick={handleLogout}>Log out</button>
+      <h2 className="welcome-header">{`Welcome Back, ${'[firstName]'}!`}</h2>
+      <div className="home-container">
+      <button onClick={handleNewGame} className="home-btn">New Game</button>
+      <button onClick={handleContinue} className="home-btn">Continue</button>
+      <button onClick={handleLogout} className="home-btn">Log out</button>
+      </div>
     </div>
   );
 };

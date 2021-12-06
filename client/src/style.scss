@@ -74,6 +74,15 @@ button {
   padding: 30px;
 }
 
+.home-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: white;
+  padding: 30px;
+  align-items: center;
+}
+
 .form-text-box {
   padding: 8px;
   font-size: 14px;
@@ -84,7 +93,7 @@ button {
   }
 }
 
-.form-btn {
+.form-btn, .home-btn, .hud-btn {
   padding: 8px;
   font-size: 16px;
   margin-bottom: 10px;
@@ -92,6 +101,23 @@ button {
   color: white;
   background-color: black;
   font-family: 'Garamond';
+  &:hover {
+    background-color: rgb(241, 241, 241);
+    color: black;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 16.5px;
+  }
+}
+
+.hud-btn {
+  background-color: rgb(194, 194, 194);
+  color: black;
+}
+
+.home-btn {
+  width: 250px;
+  border-radius: 0.1em;
 }
 
 .form-google {
@@ -109,4 +135,8 @@ button {
 #no-account {
   margin-bottom: 10px;
   margin-top: -5px;
+}
+
+.welcome-header {
+  text-align: center;
 }
