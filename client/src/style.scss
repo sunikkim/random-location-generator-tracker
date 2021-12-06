@@ -58,7 +58,7 @@ button {
   z-index: 11;
 }
 
-.form {
+.form, .reset {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -66,7 +66,7 @@ button {
   justify-content: center;
 }
 
-.form-container {
+.form-container, .home-container, .reset-container {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -75,15 +75,10 @@ button {
 }
 
 .home-container {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background-color: white;
-  padding: 30px;
   align-items: center;
 }
 
-.form-text-box {
+.form-text-box, .reset-text-box {
   padding: 8px;
   font-size: 14px;
   margin-bottom: 10px;
@@ -93,7 +88,7 @@ button {
   }
 }
 
-.form-btn, .home-btn, .hud-btn {
+.form-btn, .home-btn, .hud-btn, .reset-btn {
   padding: 8px;
   font-size: 16px;
   margin-bottom: 10px;
@@ -141,33 +136,6 @@ button {
   text-align: center;
 }
 
-.reset {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.reset__container {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background-color: #dcdcdc;
-  padding: 30px;
-}
-.reset__textBox {
-  padding: 10px;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-.reset__btn {
-  padding: 10px;
-  font-size: 18px;
-  margin-bottom: 10px;
-  border: none;
-  color: white;
-  background-color: black;
-}
 .reset div {
   margin-top: 7px;
 }

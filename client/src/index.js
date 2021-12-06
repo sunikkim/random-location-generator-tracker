@@ -7,7 +7,7 @@ import Form from './components/Form';
 import Button from './components/Button';
 import Home from './components/Home';
 import World from './components/World';
-// import Reset from './components/Reset';
+import Reset from './components/Reset';
 
 import {
   BrowserRouter as Router,
@@ -104,12 +104,12 @@ const App = () => {
             <World />
           }
         />
-        {/* <Route
+        <Route
           path="/reset"
           element={
             <Reset />
           }
-        /> */}
+        />
       </Routes>
       <ToastContainer />
     </div>

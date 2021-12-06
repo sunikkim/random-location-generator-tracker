@@ -1,36 +1,36 @@
-// import React, { useEffect, useState } from "react";
-// // import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // import { auth, sendPasswordResetEmail } from "firebase";
 
-// const Reset = () => {
-//   const [email, setEmail] = useState("");
+const Reset = () => {
+  const [email, setEmail] = useState("");
 
-//   useEffect(() => {
-//     if (loading) return;
+  useEffect(() => {
 
-//     return (
-//       <div className="reset">
-//         <div className="reset__container">
-//           <input
-//             type="text"
-//             className="reset__textBox"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             placeholder="E-mail Address"
-//           />
-//           <button
-//             className="reset__btn"
-//             onClick={() => sendPasswordResetEmail(email)}
-//           >
-//             Send password reset email
-//           </button>
-//           {/* <div>
-//             Don't have an account? <Link to="/register">Register</Link> now.
-//           </div> */}
-//         </div>
-//       </div>
-//     );
-//  });
-// }
+  });
 
-// export default Reset;
+  return (
+    <div className="reset">
+      <div className="reset-container">
+        <input
+          type="text"
+          className="reset-text-box"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+        />
+        <button
+          className="reset-btn"
+          onClick={() => sendPasswordResetEmail(email)}
+        >
+          Send password reset email
+        </button>
+        <div>
+          Don't have an account? <Link to="/register">Register</Link>
+       </div>
+      </div>
+    </div>
+  );
+}
+
+export default Reset;
