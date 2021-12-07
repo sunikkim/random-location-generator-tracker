@@ -71,7 +71,14 @@ const App = () => {
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.code);
+          if (err.code === 'auth/invalid-email'){
+            toast.error('Invalid email');
+          } else if (err.code === 'auth/weak-password') {
+            toast.error('Password is too weak');
+          } else if (err.code === 'auth/email-already-in-use') {
+            toast.error('Email already in use');
+          }
         });
     }
   };

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+
+import { toast } from 'react-toastify';
 
 const auth = getAuth();
 
@@ -14,7 +16,7 @@ const Reset = () => {
         setConfirmation(true);
       })
       .catch(err => {
-        alert('An error occurred - please make sure your email address is correct and try again!');
+        toast.error('Invalid email');
       });
   };
 
@@ -37,10 +39,10 @@ const Reset = () => {
         {confirmation && <b>Sent password reset email to {email}!</b>}
         <div>
           Don't have an account? <Link to="/register">Register</Link>
-       </div>
-       <div className="text-below-form">
+        </div>
+        <div className="text-below-form">
             Remembered your password? <Link to="/login">Login</Link>
-          </div>
+        </div>
       </div>
     </div>
   );
