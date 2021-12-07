@@ -1,7 +1,9 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const [username, setUsername] = useState('');
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -20,9 +22,11 @@ const Home = () => {
 
   useEffect(() => {
     let authToken = sessionStorage.getItem('Auth Token');
-    let userInfo = sessionStorage.getItem('User Info');
+    let userInfo = JSON.parse(sessionStorage.getItem('User Info'));
 
-    console.log('USER INFO ON HOME PAGE AFTER LOGIN', JSON.parse(userInfo));
+    console.log('USER INFO:', userInfo);
+
+    setUsername(userInfo.displayName.split(' ')[0]);
 
     if (authToken) {
       navigate('/home');
@@ -35,7 +39,7 @@ const Home = () => {
 
   return (
     <div>
-      <h2 className="welcome-header">{`Welcome Back, ${'[firstName]'}!`}</h2>
+      <h2 className="welcome-header">{`Welcome Back, ${username}!`}</h2>
       <div className="home-container">
       <button onClick={handleNewGame} className="home-btn">New Game</button>
       <button onClick={handleContinue} className="home-btn">Continue</button>
