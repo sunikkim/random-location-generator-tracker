@@ -18,9 +18,10 @@ const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
         const token = credential.accessToken;
         const user = result.user;
 
-        console.log(result, user);
+        console.log('USER INFO:', user);
 
         sessionStorage.setItem('Auth Token', token);
+        sessionStorage.setItem('User Info', JSON.stringify(user));
         navigate('/home');
       })
       .catch((err) => {
@@ -28,7 +29,7 @@ const Form = ({ title, setPassword, setEmail, handleSubmit }) => {
         const errorMessage = err.message;
         const email = err.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(error);
+        alert(error);
       });
   };
 

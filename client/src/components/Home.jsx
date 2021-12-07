@@ -20,6 +20,9 @@ const Home = () => {
 
   useEffect(() => {
     let authToken = sessionStorage.getItem('Auth Token');
+    let userInfo = sessionStorage.getItem('User Info');
+
+    console.log('USER INFO ON HOME PAGE AFTER LOGIN', JSON.parse(userInfo));
 
     if (authToken) {
       navigate('/home');

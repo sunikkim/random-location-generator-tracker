@@ -6,10 +6,17 @@ const auth = getAuth();
 
 const Reset = () => {
   const [email, setEmail] = useState('');
+  const [confirmation, setConfirmation] = useState(false);
 
-  useEffect(() => {
-
-  });
+  const handlePasswordReset = (auth, email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(result => {
+        setConfirmation(true);
+      })
+      .catch(err => {
+        alert('An error occurred - please make sure your email address is correct and try again!');
+      });
+  };
 
   return (
     <div className="reset">
@@ -23,10 +30,11 @@ const Reset = () => {
         />
         <button
           className="reset-btn"
-          onClick={() => sendPasswordResetEmail(auth, email)}
+          onClick={() => handlePasswordReset(auth, email)}
         >
           Send password reset email
         </button>
+        {confirmation && <b>Sent password reset email to {email}!</b>}
         <div>
           Don't have an account? <Link to="/register">Register</Link>
        </div>
