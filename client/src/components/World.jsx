@@ -6,9 +6,14 @@ import HUD from './HUD';
 const World = () => {
   const [timer, setTimer] = useState('');
   const [style, setStyle] = useState({});
-  const [inventory, setInventory] = useState([]);
   const [isHovering, setIsHovering] = useState(false);
+
+  const [tokens, setTokens] = useState(0);
+  const [weapons, setWeapons] = useState(['sword', 'sword']);
+  const [spells, setSpells] = useState(['thunder']);
+
   const [level, setLevel] = useState(1);
+  const [experience, setExperience] = useState(0);
 
   const navigate = useNavigate();
 
@@ -32,7 +37,6 @@ const World = () => {
   };
 
   const setColor = (target) => {
-
     if (target === 'world-wrapper') {
       let screen = document.getElementsByClassName('world-wrapper')[0];
 
@@ -90,7 +94,10 @@ const World = () => {
   };
 
   const handlePortalClick = (e) => {
-    setInventory([...inventory, e.target.className]);
+    let inventoryTemp = inventory;
+
+    setTokens(tokens + 1);
+
     setPortalPosition();
   };
 
@@ -132,7 +139,7 @@ const World = () => {
       <div className="world-wrapper" onClick={handleClick}>
         <div className="portal" onClick={handlePortalClick} style={style}onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}></div>
       </div>
-      <HUD setPortalPosition={setPortalPosition} inventory={inventory}/>
+      <HUD setPortalPosition={setPortalPosition} tokens={tokens} weapons={weapons} spells={spells}/>
       {isHovering && <HoverPortal />}
       {isHovering && <HoverPortal />}
       {isHovering && <HoverPortal />}
