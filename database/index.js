@@ -31,6 +31,7 @@ const save = (data) => {
   };
 
   const game = {
+    id: data.id,
     level: data.level,
     experience: data.experience,
     tokens: data.tokens,
@@ -38,7 +39,10 @@ const save = (data) => {
     spells: data.spells
   };
 
-  return GameModel.findOneAndUpdate(query, game);
+  const newGame = new GameModel(game);
+
+  // return GameModel.findOneAndUpdate(query, game) || newGame.save();
+  return newGame.save();
 };
 
 const get = (id) => {
