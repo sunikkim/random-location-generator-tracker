@@ -11,67 +11,44 @@ db.once('open', () => {
 });
 
 const schema = new mongoose.Schema({
-  lat: Number,
-  lng: Number,
-  location: String,
+  id: String,
+  name: String,
+  tokens: Number,
+  weapons: [String],
+  spells: [String]
 });
 
-const LocationModel = mongoose.model('LocationModel', schema);
+const GameModel = mongoose.model('GameModel', schema);
 
-const save = (data, cb) => {
-  const location = new LocationModel({
-    lat: data.coordinates.lat,
-    lng: data.coordinates.lng,
-    location: data.location
+const save = (data) => {
+  console.log('SAVE DB', data);
+
+  const game = new GameModel({
+    id: data.id,
+    name: data.name,
+    tokens: data.tokens,
+    weapons: data.weapons,
+    spells: data.spells
   });
 
-  LocationModel.findOne({ location: data.location }, (err, savedLocation) => {
-    if (err) {
-      return console.error(err);
-    }
-    if (!savedLocation) {
-      location.save((err, location) => {
-        if (err) {
-          return console.error(err);
-        }
-        cb('Successfully saved in DB!');
-      });
-    }
-  });
+  return game.save();
 };
 
-const get = (cb) => {
-  LocationModel.find({}, (err, locations) => {
-    if (err) {
-      console.log(err);
-    }
-    cb(locations);
-  });
-}
-
-const clear = (cb) => {
-  LocationModel.deleteMany({})
-    .then((res) => {
-      cb(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+const get = () => {
+  // GameModel.find({});
 };
 
-const remove = (id, cb) => {
-  LocationModel.findByIdAndDelete(id)
-    .then((res) => {
-      cb(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+// const remove = (id, cb) => {
+//   LocationModel.findByIdAndDelete(id)
+//     .then((res) => {
+//       cb(res);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
 
 module.exports = {
   save,
-  get,
-  clear,
-  remove
+  get
 };

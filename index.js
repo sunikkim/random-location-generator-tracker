@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const app = express();
-const { save, get, clear, remove } = require('./database/index.js');
+const { save, get } = require('./database/index.js');
 const mongoose = require('mongoose');
 
 const port = process.env.PORT || 5000;
@@ -18,26 +18,16 @@ app.get('/data', (req, res) => {
   });
 });
 
-app.get('/clearData', (req, res) => {
-  clear((result) => {
-    res.send(result);
-  });
-});
-
 app.post('/data', (req, res) => {
   const data = req.body;
 
-  save(data, () => {
-    res.sendStatus(200);
-  });
-});
-
-app.put('/deleteItem', (req, res) => {
-  const id = req.body.id;
-
-  remove(id, () => {
-    res.sendStatus(204);
-  });
+  save(data)
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.get('*', (req, res) => {

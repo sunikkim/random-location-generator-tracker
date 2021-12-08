@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import sun from '../assets/sun.png';
 import sword from '../assets/sword.png';
@@ -18,7 +19,23 @@ const HUD = ({ setPortalPosition, tokens, weapons, spells }) => {
     const userId = userInfo.uid;
 
     console.log(userId);
+
+    const data = {
+      id: userId,
+      name: userInfo.displayName,
+      tokens,
+      weapons,
+      spells
+    };
+
     // save user info and relevant game state to mongoDB
+    axios.post('/data', data)
+      .then((result) => {
+        console.log('post data result', result)
+      })
+      .catch((err) => {
+        console.log('post data err', err);
+      });
   };
 
   return (
