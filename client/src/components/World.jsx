@@ -11,7 +11,7 @@ const World = () => {
   const [loaded, setLoaded] = useState(false);
 
   const [tokens, setTokens] = useState(10);
-  const [weapons, setWeapons] = useState(['sword', 'sword']);
+  const [weapons, setWeapons] = useState(['sword', 'sword', 'sword']);
   const [spells, setSpells] = useState(['thunder', 'thunder', 'thunder']);
 
   const [level, setLevel] = useState(1);
