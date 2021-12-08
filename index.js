@@ -17,6 +17,7 @@ app.get('/data', (req, res) => {
 
   get(id)
     .then((result) => {
+      console.log('GET RESULT', result);
       res.send(result);
     })
     .catch((err) => {
