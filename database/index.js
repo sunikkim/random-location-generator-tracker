@@ -25,7 +25,7 @@ const schema = new mongoose.Schema({
 
 const GameModel = mongoose.model('GameModel', schema);
 
-const save = (data) => {
+const save = async (data) => {
   const query = {
     id: data.id
   };
@@ -40,9 +40,13 @@ const save = (data) => {
   };
 
   const newGame = new GameModel(game);
+  const exists = await GameModel.find(query);
 
-  // return GameModel.findOneAndUpdate(query, game) || newGame.save();
-  return newGame.save();
+  if (exists.length) {
+    return GameModel.findOneAndUpdate(query, game);
+  } else {
+    return newGame.save();
+  }
 };
 
 const get = (id) => {
