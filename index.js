@@ -13,9 +13,15 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 app.get('/data', (req, res) => {
-  get((result) => {
-    res.send(result);
-  });
+  const id = req.query.id;
+
+  get(id)
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.post('/data', (req, res) => {
@@ -23,7 +29,7 @@ app.post('/data', (req, res) => {
 
   save(data)
     .then((result) => {
-      res.sendStatus(200);
+      res.sendStatus(201);
     })
     .catch((err) => {
       console.log(err);

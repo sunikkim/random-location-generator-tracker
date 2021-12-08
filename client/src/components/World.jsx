@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import HUD from './HUD';
 
@@ -18,18 +19,33 @@ const World = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem('Auth Token');
+    const authToken = sessionStorage.getItem('Auth Token');
+    const userInfo = JSON.parse(sessionStorage.getItem('User Info'));
+    const userId = userInfo.uid;
 
     if (authToken) {
       navigate('/world');
       setColor();
       setPortalPosition();
+      fetchSavedData(userId);
     }
 
     if (!authToken) {
       navigate('/login');
     }
   }, []);
+
+  const fetchSavedData = (id) => {
+    console.log('UID', id);
+
+    axios.get(`/data?id=${id}`)
+      .then((result) => {
+        console.log('get result', result);
+      })
+      .catch((err) => {
+        console.log('get err', err);
+      });
+  };
 
   const generateRandomHexCode = () => {
     const n = (Math.random() * 0xfffff * 1000000).toString(16);

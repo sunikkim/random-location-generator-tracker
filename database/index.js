@@ -24,8 +24,6 @@ const schema = new mongoose.Schema({
 const GameModel = mongoose.model('GameModel', schema);
 
 const save = (data) => {
-  // console.log('SAVE DB', data);
-
   const query = {
     id: data.id
   };
@@ -39,19 +37,9 @@ const save = (data) => {
   return GameModel.findOneAndUpdate(query, game);
 };
 
-const get = () => {
-  // GameModel.find({});
+const get = (id) => {
+  return GameModel.find({ id });
 };
-
-// const remove = (id, cb) => {
-//   LocationModel.findByIdAndDelete(id)
-//     .then((res) => {
-//       cb(res);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
 
 module.exports = {
   save,
