@@ -15,15 +15,11 @@ app.use(express.static(path.join(__dirname, 'client', 'build')));
 app.get('/data', (req, res) => {
   const id = req.query.id;
 
-  console.log('GET DATA', id);
-
   get(id)
     .then((result) => {
-      console.log('DB GET RESULT', result);
       res.send(result);
     })
     .catch((err) => {
-      alert(err);
       console.log(err);
     });
 });
@@ -31,15 +27,11 @@ app.get('/data', (req, res) => {
 app.post('/data', (req, res) => {
   const data = req.body;
 
-  console.log('POST DATA', data);
-
   save(data)
     .then((result) => {
-      console.log('DB SAVE RESULT');
       res.sendStatus(201);
     })
     .catch((err) => {
-      alert(err);
       console.log(err);
     });
 });
