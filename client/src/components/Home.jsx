@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-  const [username, setUsername] = useState('');
+  const [welcomeMessage, setWelcomeMessage] = useState('Welcome Back!');
 
   const navigate = useNavigate();
 
@@ -25,7 +25,9 @@ const Home = () => {
     let authToken = sessionStorage.getItem('Auth Token');
     let userInfo = JSON.parse(sessionStorage.getItem('User Info'));
 
-    setUsername(userInfo.displayName.split(' ')[0]);
+    if (userInfo.displayName) {
+      setWelcomeMessage(`Welcome Back, ${userInfo.displayName.split(' ')[0]}!`);
+    }
 
     if (authToken) {
       navigate('/home');
@@ -38,7 +40,7 @@ const Home = () => {
 
   return (
     <div>
-      <h2 className="welcome-header">{`Welcome Back, ${username}!`}</h2>
+      <h2 className="welcome-header">{welcomeMessage}</h2>
       <div className="home-container">
       <button onClick={handleNewGame} className="home-btn">New Game</button>
       <button onClick={handleContinue} className="home-btn">Continue</button>
