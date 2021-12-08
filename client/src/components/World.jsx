@@ -10,7 +10,7 @@ const World = () => {
 
   const [tokens, setTokens] = useState(0);
   const [weapons, setWeapons] = useState(['sword', 'sword']);
-  const [spells, setSpells] = useState(['thunder']);
+  const [spells, setSpells] = useState(['thunder', 'thunder', 'thunder']);
 
   const [level, setLevel] = useState(1);
   const [experience, setExperience] = useState(0);
@@ -94,10 +94,7 @@ const World = () => {
   };
 
   const handlePortalClick = (e) => {
-    let inventoryTemp = inventory;
-
     setTokens(tokens + 1);
-
     setPortalPosition();
   };
 
