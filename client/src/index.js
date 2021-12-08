@@ -47,12 +47,12 @@ const App = () => {
     if (id === 1) {
       signInWithEmailAndPassword(auth, email, password)
         .then((response) => {
-          navigate('/home');
-
           const user = response.user;
 
           sessionStorage.setItem('User Info', JSON.stringify(user));
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
+
+          navigate('/home');
         })
         .catch((err) => {
           if (err.code === 'auth/wrong-password' || 'auth/invalid-email'){
@@ -68,6 +68,8 @@ const App = () => {
 
           sessionStorage.setItem('User Info', JSON.stringify(user));
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
+
+          navigate('/home');
         })
         .catch((err) => {
           if (err.code === 'auth/invalid-email'){
