@@ -28,6 +28,8 @@ const HUD = ({ setPortalPosition, tokens, level, experience, weapons, spells }) 
       spells
     };
 
+    console.log('data', data, level, experience);
+
     axios.post('/data', data)
       .then((result) => {
         alert('Saved Game!');

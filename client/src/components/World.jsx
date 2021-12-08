@@ -41,6 +41,7 @@ const World = () => {
       .then((result) => {
         if (!result.data.length) {
           setLoaded(true);
+          return;
         }
 
         const savedData = result.data[0];
