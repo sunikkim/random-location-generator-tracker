@@ -11,7 +11,10 @@ db.once('open', () => {
 });
 
 const schema = new mongoose.Schema({
-  id: String,
+  id: {
+    type: String,
+    unique: true
+  },
   name: String,
   tokens: Number,
   weapons: [String],
@@ -21,17 +24,19 @@ const schema = new mongoose.Schema({
 const GameModel = mongoose.model('GameModel', schema);
 
 const save = (data) => {
-  console.log('SAVE DB', data);
+  // console.log('SAVE DB', data);
 
-  const game = new GameModel({
-    id: data.id,
-    name: data.name,
+  const query = {
+    id: data.id
+  };
+
+  const game = {
     tokens: data.tokens,
     weapons: data.weapons,
     spells: data.spells
-  });
+  };
 
-  return game.save();
+  return GameModel.findOneAndUpdate(query, game);
 };
 
 const get = () => {

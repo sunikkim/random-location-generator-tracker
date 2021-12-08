@@ -18,8 +18,6 @@ const HUD = ({ setPortalPosition, tokens, weapons, spells }) => {
     const userInfo = JSON.parse(sessionStorage.getItem('User Info'));
     const userId = userInfo.uid;
 
-    console.log(userId);
-
     const data = {
       id: userId,
       name: userInfo.displayName,
@@ -28,13 +26,12 @@ const HUD = ({ setPortalPosition, tokens, weapons, spells }) => {
       spells
     };
 
-    // save user info and relevant game state to mongoDB
     axios.post('/data', data)
       .then((result) => {
-        console.log('post data result', result)
+        console.log(result);
       })
       .catch((err) => {
-        console.log('post data err', err);
+        console.log(err);
       });
   };
 
