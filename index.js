@@ -15,12 +15,15 @@ app.use(express.static(path.join(__dirname, 'client', 'build')));
 app.get('/data', (req, res) => {
   const id = req.query.id;
 
+  console.log('MONGO URI', process.env.MONGODB_URI);
+
   get(id)
     .then((result) => {
-      console.log('GET RESULT', result);
+      console.log('GET RESULT', result, 'ID', id, 'QUERY', req.query);
       res.send(result);
     })
     .catch((err) => {
+      console.log('GET ERR', err);
       console.log(err);
     });
 });
