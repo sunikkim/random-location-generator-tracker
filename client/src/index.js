@@ -36,7 +36,6 @@ const App = () => {
       navigate('/home');
     } else if (authToken && startedGame) {
       navigate('/world');
-      // navigate('/home');
     } else if (!authToken) {
       navigate('/login');
     }
@@ -71,7 +70,6 @@ const App = () => {
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
         })
         .catch((err) => {
-          console.log(err.code);
           if (err.code === 'auth/invalid-email'){
             toast.error('Invalid email');
           } else if (err.code === 'auth/weak-password') {
