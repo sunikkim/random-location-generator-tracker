@@ -24,8 +24,6 @@ const Home = () => {
     let authToken = sessionStorage.getItem('Auth Token');
     let userInfo = JSON.parse(sessionStorage.getItem('User Info'));
 
-    console.log('USER INFO:', userInfo);
-
     setUsername(userInfo.displayName.split(' ')[0]);
 
     if (authToken) {

@@ -8,7 +8,7 @@ const World = () => {
   const [style, setStyle] = useState({});
   const [isHovering, setIsHovering] = useState(false);
 
-  const [tokens, setTokens] = useState(0);
+  const [tokens, setTokens] = useState(10);
   const [weapons, setWeapons] = useState(['sword', 'sword']);
   const [spells, setSpells] = useState(['thunder', 'thunder', 'thunder']);
 
