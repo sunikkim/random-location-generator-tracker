@@ -6,7 +6,7 @@ import sun from '../assets/sun.png';
 import sword from '../assets/sword.png';
 import thunder from '../assets/thunder.png';
 
-const HUD = ({ setPortalPosition, tokens, weapons, spells }) => {
+const HUD = ({ setPortalPosition, tokens, level, experience, weapons, spells }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -21,6 +21,8 @@ const HUD = ({ setPortalPosition, tokens, weapons, spells }) => {
     const data = {
       id: userId,
       name: userInfo.displayName,
+      level,
+      experience,
       tokens,
       weapons,
       spells
@@ -28,7 +30,7 @@ const HUD = ({ setPortalPosition, tokens, weapons, spells }) => {
 
     axios.post('/data', data)
       .then((result) => {
-        console.log(result);
+        alert('Saved Game!');
       })
       .catch((err) => {
         console.log(err);

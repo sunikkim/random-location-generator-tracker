@@ -16,6 +16,8 @@ const schema = new mongoose.Schema({
     unique: true
   },
   name: String,
+  level: Number,
+  experience: Number,
   tokens: Number,
   weapons: [String],
   spells: [String]
@@ -29,6 +31,8 @@ const save = (data) => {
   };
 
   const game = {
+    level: data.level,
+    experience: data.experience,
     tokens: data.tokens,
     weapons: data.weapons,
     spells: data.spells

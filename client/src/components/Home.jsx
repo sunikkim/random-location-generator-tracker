@@ -17,7 +17,8 @@ const Home = () => {
   };
 
   const handleContinue = () => {
-    navigate('/continue');
+    // navigate('/continue');
+    navigate('/world');
   };
 
   useEffect(() => {

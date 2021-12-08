@@ -17,7 +17,7 @@ app.get('/data', (req, res) => {
 
   get(id)
     .then((result) => {
-      res.sendStatus(200);
+      res.send(result);
     })
     .catch((err) => {
       console.log(err);

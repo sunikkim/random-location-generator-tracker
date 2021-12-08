@@ -8,6 +8,7 @@ const World = () => {
   const [timer, setTimer] = useState('');
   const [style, setStyle] = useState({});
   const [isHovering, setIsHovering] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   const [tokens, setTokens] = useState(10);
   const [weapons, setWeapons] = useState(['sword', 'sword']);
@@ -36,14 +37,23 @@ const World = () => {
   }, []);
 
   const fetchSavedData = (id) => {
-    console.log('UID', id);
-
     axios.get(`/data?id=${id}`)
       .then((result) => {
-        console.log('get result', result);
+        if (!result.data.length) {
+          setLoaded(true);
+        }
+
+        const savedData = result.data[0];
+
+        setTokens(savedData.tokens);
+        setWeapons(savedData.weapons);
+        setSpells(savedData.spells);
+        setLevel(savedData.level);
+        setExperience(savedData.experience);
+        setLoaded(true);
       })
       .catch((err) => {
-        console.log('get err', err);
+        console.log(err);
       });
   };
 
@@ -53,6 +63,10 @@ const World = () => {
   };
 
   const setColor = (target) => {
+    if (!loaded) {
+      return;
+    }
+
     if (target === 'world-wrapper') {
       let screen = document.getElementsByClassName('world-wrapper')[0];
 
@@ -147,17 +161,24 @@ const World = () => {
     );
   };
 
-  return (
-    <div id="main-wrapper">
-      <div className="world-wrapper" onClick={handleClick}>
-        <div className="portal" onClick={handlePortalClick} style={style}onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}></div>
+  if (loaded) {
+    return (
+      <div id="main-wrapper">
+        <div className="world-wrapper" onClick={handleClick}>
+          <div className="portal" onClick={handlePortalClick} style={style}onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}></div>
+        </div>
+        <HUD setPortalPosition={setPortalPosition} tokens={tokens} level={level} experience={experience} weapons={weapons} spells={spells}/>
+        {isHovering && <HoverPortal />}
+        {isHovering && <HoverPortal />}
+        {isHovering && <HoverPortal />}
       </div>
-      <HUD setPortalPosition={setPortalPosition} tokens={tokens} weapons={weapons} spells={spells}/>
-      {isHovering && <HoverPortal />}
-      {isHovering && <HoverPortal />}
-      {isHovering && <HoverPortal />}
-    </div>
-  );
+    );
+  } else {
+    return(
+      <div>Loading...</div>
+    );
+  }
+
 };
 
 export default World;
