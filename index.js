@@ -17,6 +17,7 @@ app.get('/data', (req, res) => {
 
   get(id)
     .then((result) => {
+      console.log('GET RESULT', result);
       res.send(result);
     })
     .catch((err) => {
@@ -27,8 +28,11 @@ app.get('/data', (req, res) => {
 app.post('/data', (req, res) => {
   const data = req.body;
 
+  console.log('POST DATA', data);
+
   save(data)
     .then((result) => {
+      console.log('POST RESULT', result);
       res.sendStatus(201);
     })
     .catch((err) => {
