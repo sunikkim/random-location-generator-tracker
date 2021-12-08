@@ -142,7 +142,7 @@ const World = () => {
     screen.style['background-color'] = generateRandomHexCode();
   };
 
-  const HoverPortal = () => {
+  const Portal = ({ type }) => {
     const rand1 = Math.floor(Math.random() * 100);
     const rand2 = Math.floor(Math.random() * 100);
     const rand3 = Math.floor(Math.random() * 5) + 5;
@@ -154,12 +154,23 @@ const World = () => {
       left: `${rand2}vw`,
       height: `${rand3}vh`,
       width: `${rand4}vw`,
+      backgroundColor: generateRandomHexCode()
+    };
+
+    const handleClick = (e) => {
+      console.log('clicked portal');
     };
 
     return(
-      <div className="hover-portal" style={style}></div>
+      <div className="hover-portal portal" style={style} onClick={handleClick}></div>
     );
   };
+
+  // const portals = [];
+
+  // for (let i = 0; i < (level + experience) * 5; i++) {
+  //   portals.push(<Portal />);
+  // }
 
   if (loaded) {
     return (
@@ -168,9 +179,13 @@ const World = () => {
           <div className="portal" onClick={handlePortalClick} style={style}onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}></div>
         </div>
         <HUD setPortalPosition={setPortalPosition} tokens={tokens} level={level} experience={experience} weapons={weapons} spells={spells}/>
-        {isHovering && <HoverPortal />}
-        {isHovering && <HoverPortal />}
-        {isHovering && <HoverPortal />}
+        {isHovering && <Portal />}
+        {isHovering && <Portal />}
+        {isHovering && <Portal />}
+        <Portal />
+        <Portal />
+        <Portal />
+        <Portal />
       </div>
     );
   } else {
